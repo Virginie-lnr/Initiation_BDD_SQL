@@ -1,0 +1,130 @@
+Récupérer tous les albums:
+=> 
+SELECT * FROM albums;
+
+====================================================================
+
+Récupérer tous les albums dont le titre contient "Great" (indice)
+=> 
+SELECT * FROM albums WHERE title LIKE '%Great%';
+
+====================================================================
+
+Donner le nombre total d'albums contenus dans la base (sans regarder les id bien sûr)
+=> 
+SELECT COUNT(*) FROM albums;
+
+====================================================================
+
+Supprimer tous les albums dont le nom contient "music"
+=> 
+DELETE FROM albums WHERE title LIKE '%music%';
+
+====================================================================
+
+Récupérer tous les albums écrits par AC/DC
+=> 
+SELECT * FROM albums 
+JOIN artists ON albums.ArtistId = artists.ArtistId
+WHERE artists.Name = 'AC/DC';
+
+Table Artists
+-------------
+
+ArtistId    Name
+----------  ----------
+1           AC/DC
+2           Accept
+3           Aerosmith
+4           Alanis Mor
+5           Alie In C
+6           Antônio Ca
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Table Albums:
+-------------
+
+AlbumId     Title                                  ArtistId
+----------  -------------------------------------  ----------
+1           For Those About To Rock We Salute You  1
+2           Balls to the Wall                      2
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+RESULT:
+--------
+
+AlbumId     Title                                  ArtistId    ArtistId    Name
+----------  -------------------------------------  ----------  ----------  ----------
+1           For Those About To Rock We Salute You  1           1           AC/DC
+4           Let There Be Rock                      1           1           AC/DC
+
+====================================================================
+
+
+Récupérer tous les titres des albums de AC/DC
+=> 
+PRAGMA table_info(tracks); 
+or 
+SELECT * FROM TableName LIMIT 1; => to show the headers only 
+
+ SELECT tracks.Name FROM tracks 
+ JOIN albums ON tracks.AlbumId = albums.AlbumId 
+ JOIN artists ON albums.ArtistId = artists.ArtistId 
+ WHERE artists.Name = 'AC/DC';  
+
+====================================================================
+
+Récupérer la liste des titres de l'album "Let There Be Rock"
+=>
+SELECT tracks.Name FROM tracks 
+JOIN albums ON albums.AlbumId = tracks.AlbumId
+WHERE albums.Title = 'Let There Be Rock';
+
+RESULT:
+--------
+Go Down
+Dog Eat Do
+Let There
+Bad Boy Bo
+Problem Ch
+Overdose
+Hell Ain't
+Whole Lott
+
+====================================================================
+
+Afficher le prix de cet album ainsi que sa durée totale
+=>
+SELECT SUM(UnitPrice), SUM(Milliseconds)
+FROM tracks 
+JOIN albums ON albums.AlbumId = tracks.AlbumId
+WHERE albums.Title = 'Let There Be Rock';
+
+RESULT:
+
+SUM(UnitPrice)  SUM(Milliseconds)
+--------------  -----------------
+7.92            2453259
+
+====================================================================
+
+
+Afficher le coût de l'intégralité de la discographie de "Deep Purple"
+=>
+SELECT al.title, SUM(t.unitprice)
+FROM artists a 
+JOIN albums al ON al.artistid = a.artistid
+JOIN tracks t ON t.albumid = al.albumid
+WHERE a.name = "Deep Purple"
+GROUP BY al.title;
+
+====================================================================
+
+
+Créer l'album de ton artiste favori en base, en renseignant correctement les trois tables albums, artists et tracks
+=>
+
+
+

@@ -1,0 +1,21 @@
+2.2.1. MOOCademy
+
+Tu dois créer une plateforme d'apprentissage en ligne. Il y a plein de cours. Chaque cours a un titre et une description. Enfin, chaque cours a plusieurs leçons, qui ont un titre et un body.
+
+users
+--------------
+| id | name  |
+| :--| :---- |
+| 1  | user1 |
+
+cours 
+---------------------------------
+| id | user_id  | title          |
+| :--| :------- | : ------------ |
+| 1  |    1     | La base en SQL |
+
+lessons 
+-----------------------------------------
+| id | cours_id | title         | body   |
+| :--| :------- | :-------------| :----- |
+| 1  | 1        | Les commandes | blabla |

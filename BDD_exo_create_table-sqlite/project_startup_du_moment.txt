@@ -1,0 +1,55 @@
+=> table users 
+
+CREATE TABLE `users` (
+`id` INTEGER PRIMARY KEY AUTOINCREMENT, 
+`name` TEXT
+);
+
+INSERT INTO users (name) VALUES ('User 1');
+
+.headers on 
+.mode column
+
+SELECT * FROM users;
+
+
+=> table articles 
+
+CREATE TABLE `articles` (
+`id` INTEGER PRIMARY KEY AUTOINCREMENT, 
+`user_id` INTEGER,
+`title` TEXT,
+`category_id` INTEGER
+);
+
+INSERT INTO articles (user_id, title, category_id) VALUES (1, 'mon premier article', 1);
+
+SELECT * FROM articles;
+
+=> table category 
+
+CREATE TABLE `category` (
+`id` INTEGER PRIMARY KEY AUTOINCREMENT, 
+`title` TEXT, 
+`tag_id` INTEGER
+);
+
+INSERT INTO category (title, tag_id) VALUES ('Voyages', 1);
+
+SELECT * FROM category;
+
+=> table tags
+
+CREATE TABLE `tags` (
+`id` INTEGER PRIMARY KEY AUTOINCREMENT, 
+`title` TEXT, 
+`color` TEXT
+);
+
+INSERT INTO tags (title, color) VALUES ('tag1', 'blue');
+
+SELECT * FROM tags;
+
+SELECT * FROM articles
+JOIN users ON users.id = articles.user_id
+WHERE users.id = 1;

@@ -1,0 +1,20 @@
+2.2.4. The Hacking Class
+
+Tu vas encore faire un site d'éducation en ligne. Dans ce site il y aura des élèves qui peuvent s'inscrire à un seul cours. Un cours pourra avoir plusieurs élèves
+
+students
+----------------------------
+| id | name     | course_id |
+| :--| :--------| :-------- |
+| 1  | student1 | POO       |
+
+courses
+--------------------------
+| id | title | student_id |
+| :--| :-----|:-----------|
+| 1. | POO   | 1          |
+
+subsribe_to_course
+------------------------------
+| id | course_id | student_id |
+| 1. | 1.        | 1          |
